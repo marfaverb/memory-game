@@ -59,19 +59,25 @@ emojis.forEach((emoji) => {
       cardElement.classList.add("card-emoji");
 
       if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
+        gsap.to([firstChoice, secondChoice], {
+          duration: 0.5,
+          scale: 2,
+          opacity: 0,
+        });
         firstChoice = null;
         secondChoice = null;
         cardLeftToMatch = cardLeftToMatch - 1;
         if (cardLeftToMatch === 0) {
           window.alert("bravo vous avez gagné :)");
         }
+      } else {
+        setTimeout(() => {
+          firstChoice.classList.remove("card-emoji");
+          secondChoice.classList.remove("card-emoji");
+          firstChoice = null;
+          secondChoice = null;
+        }, 1000);
       }
-    } else {
-      firstChoice.classList.remove("card-emoji");
-      secondChoice.classList.remove("card-emoji");
-      firstChoice = cardElement;
-      secondChoice = null;
-      cardElement.classList.add("card-emoji");
     }
   });
 });
