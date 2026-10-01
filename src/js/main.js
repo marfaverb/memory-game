@@ -40,9 +40,14 @@ function shuffleArray(array) {
     array[i] = array[j];
     array[j] = temp;
   }
+  return array;
 }
-shuffleArray(emojis);
 
+const resetChoices = () => {
+  firstChoice = null;
+  secondChoice = null;
+};
+shuffleArray(emojis);
 emojis.forEach((emoji) => {
   const cardElement = document.createElement("div");
   cardElement.classList.add("card");
@@ -87,9 +92,3 @@ gsap.from(".card", {
   opacity: 0,
   stagger: 0.1,
 });
-
-/**
- * 1. retourner les cartes (rendre l'emoji invisible)
- * -la carte de base ne doit pas afficher l'emoji
- * -quand on clic sur la carte, l'emoji s'affiche
- */
