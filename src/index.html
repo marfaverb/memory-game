@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <h1>Memory Game</h1>
-    <h2>Find all pairs</h2>
-    <div id="menu">
-      <button class="level-button" data-pairs="6">6</button>
-      <button class="level-button" data-pairs="8">8</button>
-      <button class="level-button" data-pairs="10">10</button>
-      <button class="level-button" data-pairs="12">12</button>
+    <div id="overlay-content">
+      <div id="overlay-text">
+        <h1>Memory Game</h1>
+        <h2>Find all pairs</h2>
+      </div>
+      <div id="menu">
+        <button class="level-button" data-pairs="6">6</button>
+        <button class="level-button" data-pairs="8">8</button>
+        <button class="level-button" data-pairs="10">10</button>
+        <button class="level-button" data-pairs="12">12</button>
+      </div>
+      <button id="restart-button"></button>
     </div>
-    <button id="restart-button"></button>
     <div id="board"></div>
 
     <script src="js/main.js" type="module"></script>

@@ -1,35 +1,35 @@
 import { gsap } from "gsap";
 
-const emojis = [
-  "🧉",
-  "🍡",
-  "🥞",
-  "🍔",
-  "🍕",
-  "🍧",
-  "🍮",
-  "🍰",
-  "🥭",
-  "🍒",
-  "🍦",
-  "🧋",
-  "🧉",
-  "🍡",
-  "🥞",
-  "🍔",
-  "🍕",
-  "🍧",
-  "🍮",
-  "🍰",
-  "🥭",
-  "🍒",
-  "🍦",
-  "🧋",
+const images = [
+  "red-velvet",
+  "blackberry-wave",
+  "blueberry-night",
+  "blue-oreo",
+  "tiramisu",
+  "sneakers",
+  "pistachio",
+  "oreo",
+  "mango",
+  "matcha",
+  "matcha-strawberry",
+  "dragon-cake",
+  "red-velvet",
+  "blackberry-wave",
+  "blueberry-night",
+  "blue-oreo",
+  "tiramisu",
+  "sneakers",
+  "pistachio",
+  "oreo",
+  "mango",
+  "matcha",
+  "matcha-strawberry",
+  "dragon-cake",
 ];
 
 let firstChoice = null;
 let secondChoice = null;
-let cardLeftToMatch = emojis.length / 2; //length en js c'est le shiffre//
+let cardLeftToMatch = images.length / 2; //length en js c'est le shiffre//
 
 const board = document.querySelector("#board");
 
@@ -44,9 +44,9 @@ const shuffle = (array) => {
   return array;
 };
 
-const createCard = (emoji) => {
+const createCard = (image) => {
   const cardElement = document.createElement("div");
-  cardElement.dataset.emoji = emoji;
+  cardElement.dataset.emoji = image;
   cardElement.classList.add("card");
 
   return cardElement;
@@ -65,8 +65,8 @@ const resetChoices = () => {
   secondChoice = null;
 };
 
-shuffle(emojis).forEach((emoji) => {
-  const cardElement = createCard(emoji);
+shuffle(images).forEach((image) => {
+  const cardElement = createCard(image);
 
   cardElement.addEventListener("click", () => {
     if (cardElement.classList.contains("card-emoji")) {
