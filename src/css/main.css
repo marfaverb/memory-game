@@ -13,6 +13,16 @@ video {
   display: block;
 }
 
+body {
+  font-family: Aminute, sans-serif;
+  background: radial-gradient(
+    159.11% 111.49% at 90.18% -4.86%,
+    #3854aa 0%,
+    #021242 100%
+  );
+  color: #fff;
+}
+
 #board {
   width: 800px;
   height: 800px;
