@@ -32,6 +32,7 @@ let secondChoice = null;
 let cardLeftToMatch = images.length / 2; //length en js c'est le shiffre//
 
 const board = document.querySelector("#board");
+const startButton = document.querySelector("#restart-button");
 
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -65,46 +66,58 @@ const resetChoices = () => {
   secondChoice = null;
 };
 
-shuffle(images).forEach((image) => {
-  const cardElement = createCard(image);
+const startGame = () => {
+  resetChoices();
+  cardLeftToMatch = images.length / 2;
 
-  cardElement.addEventListener("click", () => {
-    if (cardElement.classList.contains("card-emoji")) {
-      return;
-    }
+  board.innerHTML = "";
 
-    if (firstChoice === null) {
-      firstChoice = cardElement;
+  shuffle([...images]).forEach((image) => {
+    const cardElement = createCard(image);
 
-      revealCard(cardElement);
-    } else if (secondChoice === null && firstChoice !== cardElement) {
-      secondChoice = cardElement;
-
-      revealCard(cardElement);
-
-      if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
-        cardLeftToMatch = cardLeftToMatch - 1;
-        if (cardLeftToMatch === 0) {
-          window.alert("Bravo !");
-        }
-        resetChoices();
-      } else {
-        setTimeout(() => {
-          hideCard(firstChoice);
-          hideCard(secondChoice);
-          resetChoices();
-        }, 1000);
+    cardElement.addEventListener("click", () => {
+      if (cardElement.classList.contains("card-emoji")) {
+        return;
       }
-    } else {
-      // on ne fait rien
-    }
+
+      if (firstChoice === null) {
+        firstChoice = cardElement;
+
+        revealCard(cardElement);
+      } else if (secondChoice === null && firstChoice !== cardElement) {
+        secondChoice = cardElement;
+
+        revealCard(cardElement);
+
+        if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
+          cardLeftToMatch = cardLeftToMatch - 1;
+          if (cardLeftToMatch === 0) {
+            window.alert("Bravo !");
+          }
+          resetChoices();
+        } else {
+          timer = setTimeout(() => {
+            hideCard(firstChoice);
+            hideCard(secondChoice);
+            resetChoices();
+          }, 1000);
+        }
+      }
+    });
+
+    board.appendChild(cardElement);
   });
 
-  board.appendChild(cardElement);
+  gsap.from(".card", {
+    duration: 1,
+    opacity: 0,
+    stagger: 0.1,
+  });
+};
+
+startButton.addEventListener("click", () => {
+  startGame();
+  startButton.textContent = "restart game";
 });
 
-gsap.from(".card", {
-  duration: 1,
-  opacity: 0,
-  stagger: 0.1,
-});
+startGame();
